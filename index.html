@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;1,100&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/4f23b2941c.js" crossorigin="anonymous"></script>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="/style/style.css">
+    <!-- Logo Pestaña -->
+    <link rel="shortcut icon" href="/images/BAnco CSA.png" type="image/x-icon">
+    <title>Préstamos Personales || Banco CSA</title>
+</head>
+
+<body>
+    <!-- Encabezado de pagina -->
+
+    <header class="encabezado" id="encabezado">
+        <h3 class="logo">Banco CSA</h3>
+        <ul>
+            <li><i class="fa-solid fa-envelope"></i></li>
+            <li>
+                <p>banco-csa@bancocsa.com</p>
+            </li>
+            <li><i class="fa-solid fa-square-phone"></i></i></li>
+            <li>
+                <p>0351-123456</p>
+            </li>
+        </ul>
+    </header>
+    <main class="main">
+
+        <h1 class="title-pag">Simulá tu Préstamo Personal</h1>
+
+        <!------------ Datos Personales del cliente ------------>
+
+        <section class="datos-personales">
+            <form class="datosPersona" id="datosPersona">
+                <h2 class="title-h2">Datos Personales</h2>
+                <label class="label-datos">Nombre</label>
+                <input type="text" name="nombre" id="input-name">
+                <label class="label-datos">DNI</label>
+                <input type="text" name="dni" id="input-dni">
+                <button type="submit" id="calculo" class="btn-simular">Validar
+                    Cliente</button>
+            </form>
+
+            <!------------ Datos credito ------------>
+
+            <div class="inputs-credito">
+                <h2 class="title-h2">Opciones para tu Préstamo</h2>
+                <label class="label-datos" id="label-datos">Cliente</label>
+                <span>Marque el tilde si es cliente del banco</span>
+                <input type="checkbox" name="cliente" id="checkbox-cliente" onclick="checkedCliente()">
+                <label class="label-datos">Importe del credito</label>
+                <input type="text" name="capital-inicial" id="capital">
+                <label class="label-datos">Plazo</label>
+                <input type="number" name="plazo" id="plazo" min="12" max="60" step="12" placeholder="De 1 a 5 años">
+                <button type="submit" id="calculo" class="btn-simular" onclick="calcularPrestamo()">Simular
+                    Préstamo</button>
+            </div>
+        </section>
+
+        <!------------- Datos del prestamo ------------>
+
+        <h2 class="h2">Tasa de interés</h2>
+        <section class="op-prestamo">
+            <div class="interes-grid">
+                <div class="tazas-interes">TNA %<p id="tna"></p>
+                </div>
+                <div class="tazas-interes">TEA %<p id="tea"></p>
+                </div>
+                <div class="tazas-interes">CFT s/imp %<p id="cft"></p>
+                </div>
+                <div class="tazas-interes">CFT c/imp %<p id="cftImp"></p>
+                </div>
+            </div>
+            <div class="aclaraciones">
+                <p> <i class="fa-solid fa-arrow-right"></i> Los datos expuestos son estimativos y no tienen caracter
+                    contractual.</p>
+                <p> <i class="fa-solid fa-arrow-right"></i> Monto y aprobación del préstamo sujeto a análisis crediticio
+                    de CSA Bank Argentina S.A. al
+                    momento de solicitar el préstamo.</p>
+                <p> <i class="fa-solid fa-arrow-right"></i> La información expuesta corresponde a un Préstamo Personal a
+                    Tasa Fija.</p>
+            </div>
+        </section>
+        <h2 class="h2">Informacion del Préstamo</h2>
+        <section class="tabla-prestamo">
+            <table class="tabla">
+                <thead>
+                    <tr class="encabezado-tabla">
+                        <th>Cuotas</th>
+                        <th>Saldo Inicial</th>
+                        <th>Interes</th>
+                        <th>Cuota Pura</th>
+                        <th>Gastos Adm.</th>
+                        <th>Cuota Total</th>
+                        <th>Saldo Final</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tabla">
+                        <td id="cuotas" data-label="Cuotas: "></td>
+                        <td id="saldo-capital" data-label="Saldo Capital: "></td>
+                        <td id="interes-tabla" data-label="Interes: "></td>
+                        <td id="cuota-pura" data-label="Cuota Pura: "></td>
+                        <td id="gastosAdm" data-label="Gastos Adm.: "></td>
+                        <td id="valor-cuotas" data-label="Cuota Total: "></td>
+                        <td id="saldo-final" data-label="Saldo Final: "></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ---------- Beneficios --------------->
+        <h2 class="h2">Beneficios</h2>
+        <article class="beneficios-grid">
+            <div class="beneficios">
+                <i class="fa-solid fa-mobile"></i>
+                <h4>Es 100% online</h4>
+                <p>Podés solicitar un préstamo en Banco CSA. Estés donde estés.</p>
+            </div>
+            <div class="beneficios">
+                <i class="fa-solid fa-wallet"></i>
+                <h4>Depósito en el acto</h4>
+                <p>Te lo depositamos en el momento en tu cuenta bancaria.</p>
+            </div>
+            <div class="beneficios">
+                <i class="fa-solid fa-comment-dollar"></i>
+                <h4>Elegís la cantidad de cuotas</h4>
+                <p>Sacá tu préstamo y devolvelo en cuotas fijas (según tu calificación crediticia), con tasas fijas y en
+                    pesos.</p>
+            </div>
+            <div class="beneficios">
+                <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                <h4>Sin costo de otorgamiento</h4>
+                <p>Pedir tu préstamo no tiene costos extras.</p>
+            </div>
+            <div class="beneficios">
+                <i class="fa-solid fa-circle-check"></i>
+                <h4>Pago diferido en la primera cuota</h4>
+                <p>Pedí tu préstamo y pagá la primera cuota a los 3 meses.</p>
+            </div>
+            <div class="beneficios">
+                <i class="fa-solid fa-face-smile-wink"></i>
+                <h4>Podés cancelarlo totalmente</h4>
+                <p>¡En el momento que quieras! Podés hacerlo de forma total sin costo.</p>
+        </article>
+
+        <!------------- Bases y condiciones ------------>
+        <div class="btn-condiciones">
+            <h2 class="h2">Bases y condiciones</h2>
+            <button id="btn-bases" class="btn-bases">Ver Más<i class="fa-solid fa-arrow-right-long"></i></button>
+            <div class="bases"></div>
+        </div>
+
+        <!------------- Pie de pagina ------------>
+
+        <footer class="footer">
+            <p class="text-final">Carlos Aymoni | CoderHouse</p>
+            <p class="text-final">Curso de JavaScript</p>
+            <div class="icon-up">
+                <a href="#encabezado"><i class="fa-solid fa-circle-arrow-up"></i></a>
+            </div>
+        </footer>
+    </main>
+
+    <!-- scrip funcional de la pag -->
+    <script src="/js/app.js"></script>
+    <!-- scrip de llamado de una Api -->
+    <script src="/js/app-2.js"></script>
+    <!-- scrip de sweetalert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
